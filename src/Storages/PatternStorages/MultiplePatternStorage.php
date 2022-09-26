@@ -23,6 +23,11 @@ class MultiplePatternStorage implements PatternStorageInterface
         $this->validate($this->patternStorages);
     }
 
+    /**
+     * @param array $patternStorages
+     * @return void
+     * @throws InvalidMultipleStorageException
+     */
     private function validate(array $patternStorages): void
     {
         foreach ($patternStorages as $storage) {
@@ -32,6 +37,9 @@ class MultiplePatternStorage implements PatternStorageInterface
         }
     }
 
+    /**
+     * @inheritdoc
+     */
     public function getPatternCollection(): PatternCollection
     {
         $patternCollection = new PatternCollection();
@@ -45,6 +53,9 @@ class MultiplePatternStorage implements PatternStorageInterface
         return $patternCollection;
     }
 
+    /**
+     * @inheritdoc
+     */
     public function getMonthNumber(string $monthName): ?MonthNumberEnum
     {
         /** @var PatternStorageInterface $storage */
@@ -57,6 +68,9 @@ class MultiplePatternStorage implements PatternStorageInterface
         return null;
     }
 
+    /**
+     * @inheritdoc
+     */
     public function getCollectionSeparators(): array
     {
         $separators = [];
@@ -68,6 +82,9 @@ class MultiplePatternStorage implements PatternStorageInterface
         return $separators;
     }
 
+    /**
+     * @inheritdoc
+     */
     public function getIntervalSeparators(): array
     {
         $separators = [];
@@ -79,6 +96,9 @@ class MultiplePatternStorage implements PatternStorageInterface
         return $separators;
     }
 
+    /**
+     * @inheritdoc
+     */
     public function getIntervalInitialWords(): array
     {
         $initialWords = [];
@@ -89,5 +109,4 @@ class MultiplePatternStorage implements PatternStorageInterface
 
         return $initialWords;
     }
-
 }

@@ -34,6 +34,11 @@ class RowToModelConverter implements RowToModelConverterInterface
     {
         $row = preg_replace('/\s+/', ' ', trim($row));
 
+        if (!$this->patternStorage->getIntervalSeparators() ||
+            !$this->patternStorage->getCollectionSeparators()) {
+            return RowTypeEnum::UNDEFINED;
+        }
+
         $allDatePatterns = $this->patternStorage->getPatternCollection()->getPatternModels();
         foreach ($allDatePatterns as $datePattern) {
             if (preg_match_all('/^' . $datePattern->getPattern() . '$/ui', $row)) {
@@ -72,6 +77,11 @@ class RowToModelConverter implements RowToModelConverterInterface
         throw ConvertToDateException::create($row);
     }
 
+    /**
+     * @param string $row
+     * @param PatternModel $patternModel
+     * @return DateModel
+     */
     private function formatDateModel(string $row, PatternModel $patternModel): DateModel
     {
         preg_match_all('/' . $patternModel->getPattern() . '/ui', $row, $matches);
@@ -134,6 +144,11 @@ class RowToModelConverter implements RowToModelConverterInterface
         }
     }
 
+    /**
+     * @param string $row
+     * @param array $separators
+     * @return array|null
+     */
     private function getRowParts(string $row, array $separators): ?array
     {
         foreach ($separators as $separator) {

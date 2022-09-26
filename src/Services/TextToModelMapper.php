@@ -17,7 +17,6 @@ use Ruslanovich\DateConverter\Storages\PatternStorages\PatternStorageInterface;
 
 class TextToModelMapper implements TextToModelMapperInterface
 {
-
     private PatternStorageInterface $patternStorage;
 
     /**
@@ -28,6 +27,9 @@ class TextToModelMapper implements TextToModelMapperInterface
         $this->patternStorage = $patternStorage;
     }
 
+    /**
+     * @inheritdoc
+     */
     public function mapEachPatternSeparately(string $text): TextPatternSequence
     {
         $text = preg_replace('/\s+/', ' ', trim($text));
@@ -43,6 +45,9 @@ class TextToModelMapper implements TextToModelMapperInterface
         return $textPatternSequence;
     }
 
+    /**
+     * @inheritdoc
+     */
     public function mapAllPatternsTogether(string $text): TextAllPatternMatches
     {
         $text = preg_replace('/\s+/', ' ', trim($text));
@@ -68,6 +73,7 @@ class TextToModelMapper implements TextToModelMapperInterface
     }
 
     /**
+     * @inheritdoc
      * @throws IntervalNotFoundException
      */
     public function mapToInterval(string $text, string $initialWord, string $separator): TextIntervalMatch
@@ -103,6 +109,13 @@ class TextToModelMapper implements TextToModelMapperInterface
         throw IntervalNotFoundException::create();
     }
 
+    /**
+     * @param string $row
+     * @param string $initialWord
+     * @param string $separator
+     * @return array
+     * @throws Exception
+     */
     private function getIntervalParts(string $row, string $initialWord, string $separator): array
     {
         /** remove initial word */
@@ -119,6 +132,11 @@ class TextToModelMapper implements TextToModelMapperInterface
         throw new Exception("interval division error for row: " . $row);
     }
 
+    /**
+     * @param string $text
+     * @param PatternModel $datePattern
+     * @return TextPatternMatch
+     */
     private function generateTextPatternMatch(string $text, PatternModel $datePattern): TextPatternMatch
     {
         preg_match_all('/' . $datePattern->getPattern() . '/ui', $text, $matches);
@@ -138,6 +156,11 @@ class TextToModelMapper implements TextToModelMapperInterface
         );
     }
 
+    /**
+     * @param string $row
+     * @param PatternModel $patternModel
+     * @return DateModel
+     */
     private function formatDateModel(string $row, PatternModel $patternModel): DateModel
     {
         preg_match_all('/' . $patternModel->getPattern() . '/ui', $row, $matches);

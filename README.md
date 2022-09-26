@@ -1,3 +1,14 @@
+# Description
+The library provides extended functionality for working with dates.\
+
+- converting date rows  "The 13th of Mar. 1999", "Mar. 2022"  to objects.
+- converting date rows in different languages "8 März 2023"
+- converting date intervals "13th of Mar. 1999 - 8 März 2023"
+- converting date sequences "The 12th of April 2022; 8 März 2023"
+- search dates in a text in your language...
+
+The library solves all these problems.
+
 # Configuration
 Create `ArrayPatternStorage`.\
 The object takes config array of a strictly defined format:

@@ -27,6 +27,10 @@ class ArrayPatternStorage implements PatternStorageInterface
         }
     }
 
+    /**
+     * @param array $patternResource
+     * @return bool
+     */
     private function validResource(array $patternResource): bool
     {
         if (!array_key_exists('patterns', $patternResource) ||
@@ -45,6 +49,10 @@ class ArrayPatternStorage implements PatternStorageInterface
         return true;
     }
 
+    /**
+     * @param string $pattern
+     * @return string
+     */
     private function substituteVariables(string $pattern): string
     {
         $months = [];
@@ -59,7 +67,7 @@ class ArrayPatternStorage implements PatternStorageInterface
     }
 
     /**
-     * @return PatternCollection
+     * @inheritdoc
      */
     public function getPatternCollection(): PatternCollection
     {
@@ -77,6 +85,10 @@ class ArrayPatternStorage implements PatternStorageInterface
         return $collection;
     }
 
+    /**
+     * @param string $pattern
+     * @return int|null
+     */
     private function getDayPlace(string $pattern): ?int
     {
         if (!strpos($pattern, '$day')) {
@@ -93,6 +105,10 @@ class ArrayPatternStorage implements PatternStorageInterface
         return array_search('day', array_keys($positions)) + 1;
     }
 
+    /**
+     * @param string $pattern
+     * @return int|null
+     */
     private function getMonthPlace(string $pattern): ?int
     {
         if (!strpos($pattern, '$month')) {
@@ -109,6 +125,10 @@ class ArrayPatternStorage implements PatternStorageInterface
         return array_search('month', array_keys($positions)) + 1;
     }
 
+    /**
+     * @param string $pattern
+     * @return int|null
+     */
     private function getYearPlace(string $pattern): ?int
     {
         if (!strpos($pattern, '$year')) {
@@ -125,6 +145,9 @@ class ArrayPatternStorage implements PatternStorageInterface
         return array_search('year', array_keys($positions)) + 1;
     }
 
+    /**
+     * @inheritdoc
+     */
     public function getMonthNumber(string $monthName): ?MonthNumberEnum
     {
         $monthInLowercase = mb_strtolower($monthName);
@@ -138,18 +161,39 @@ class ArrayPatternStorage implements PatternStorageInterface
         return null;
     }
 
+    /**
+     * @inheritdoc
+     */
     public function getCollectionSeparators(): array
     {
+        if (!array_key_exists('collection_separators', $this->config)) {
+            return [];
+        }
+
         return $this->config['collection_separators'];
     }
 
+    /**
+     * @inheritdoc
+     */
     public function getIntervalSeparators(): array
     {
+        if (!array_key_exists('interval_separators', $this->config)) {
+            return [];
+        }
+
         return $this->config['interval_separators'];
     }
 
+    /**
+     * @inheritdoc
+     */
     public function getIntervalInitialWords(): array
     {
+        if (!array_key_exists('interval_initial_words', $this->config)) {
+            return [];
+        }
+
         return $this->config['interval_initial_words'];
     }
 }
