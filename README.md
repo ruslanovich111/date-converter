@@ -48,7 +48,7 @@ If you pass a string that does not match any of the patterns, then an Exception 
 The order of the patterns in the configuration is important because the `convertToDate` method returns a `DateModel` based on the first matching pattern!
 
 
-###Advanced options
+### Advanced options
 Interval convertation: [interval-convertation](exapmles/interval/README.md)\
 Sequence convertation: [secuence-convertation](exapmles/secuence/README.md)\
 Multiple pattern storages: [multiple-storages](exapmles/multiple_storages/README.md)
@@ -63,7 +63,7 @@ Next, let's explain the differences.\
 Let the input row be given:\
 `It was sunny outside on the 12th of April 2022, 13 April 2022 and the 17th of April 2021`
 
-###Search with replacement
+### Search with replacement
 - find all dates for the input corresponding to the first pattern, replace with $pattern_1, save the transformed row:\
 `It was sunny outside on $pattern_1, 13 April 2022 and $pattern_1`.\
 The dates for pattern 1 are stored in the TextAllPatternMatches model.
@@ -74,7 +74,7 @@ The dates for pattern 2 are stored in the TextAllPatternMatches model.
 
 For this strategy, the order of the patterns in the configuration is important!
 
-###Search with repetitions
+### Search with repetitions
 - find all dates for the input corresponding to the first pattern, replace with $pattern_1, save the transformed row:\
   `It was sunny outside on $pattern_1, 13 April 2022 and $pattern_1`.\
   The dates for pattern 1 are stored in the TextPattern model.
@@ -86,5 +86,5 @@ The dates for pattern 2 are stored in the TextPattern model.
 Thus the TextPatternSequence is fill with the TextPattern models.
 The order is not important for this strategy.
 
-###Advanced options
+### Advanced options
 Interval search: [interval-search](exapmles/interval_search/README.md)
