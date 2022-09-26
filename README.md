@@ -60,9 +60,9 @@ The order of the patterns in the configuration is important because the `convert
 
 
 ### Advanced options
-Interval convertation: [interval-convertation](exapmles/interval/README.md)\
-Sequence convertation: [secuence-convertation](exapmles/secuence/README.md)\
-Multiple pattern storages: [multiple-storages](exapmles/multiple_storages/README.md)
+Interval convertation: [interval-convertation](examples/interval/README.md)\
+Sequence convertation: [secuence-convertation](examples/secuence/README.md)\
+Multiple pattern storages: [multiple-storages](examples/multiple_storages/README.md)
 
 # Search
 The library provides two search strategies:
@@ -98,4 +98,4 @@ Thus the TextPatternSequence is fill with the TextPattern models.
 The order is not important for this strategy.
 
 ### Advanced options
-Interval search: [interval-search](exapmles/interval_search/README.md)
+Interval search: [interval-search](examples/interval_search/README.md)
