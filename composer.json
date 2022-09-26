@@ -1,0 +1,20 @@
+{
+  "name": "ruslanovich111/date-converter",
+  "description": "Convert dates",
+  "type": "library",
+  "require": {
+    "php": "^8.1",
+    "ext-mbstring": "*"
+  },
+  "authors": [
+    {
+      "name": "ruslanovich111",
+      "email": "ruslanovich111@mail.ru"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Ruslanovich\\DateConverter\\": "src"
+    }
+  }
+}
