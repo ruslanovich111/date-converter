@@ -1,5 +1,5 @@
 # Description
-The library provides extended functionality for working with dates.\
+The library provides extended functionality for working with dates. 
 
 - converting date rows  "The 13th of Mar. 1999", "Mar. 2022"  to objects.
 - converting date rows in different languages "8 März 2023"
