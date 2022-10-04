@@ -150,11 +150,18 @@ class ArrayPatternStorage implements PatternStorageInterface
      */
     public function getMonthNumber(string $monthName): ?MonthNumberEnum
     {
-        $monthInLowercase = mb_strtolower($monthName);
-        foreach ($this->config['months'] as $monthNumber => $montPresentations) {
-            if (in_array($monthInLowercase, $montPresentations) ||
-                in_array($monthName, $montPresentations)) {
-                return MonthNumberEnum::from($monthNumber);
+//        $monthInLowercase = mb_strtolower($monthName);
+//        foreach ($this->config['months'] as $monthNumber => $montPresentations) {
+//            if (in_array($monthInLowercase, $montPresentations) ||
+//                in_array($monthName, $montPresentations)) {
+//                return MonthNumberEnum::from($monthNumber);
+//            }
+//        }
+        foreach ($this->config['months'] as $monthNumber => $monthExpressions) {
+            foreach ($monthExpressions as $expression){
+                if (preg_match('/' . $expression . '/ui', trim($monthName))) {
+                    return MonthNumberEnum::from($monthNumber);
+                }
             }
         }
 
