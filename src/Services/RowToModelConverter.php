@@ -29,6 +29,7 @@ class RowToModelConverter implements RowToModelConverterInterface
     /**
      * @param string $row
      * @return RowTypeEnum
+     * @throws \Exception
      */
     public function getRowType(string $row): RowTypeEnum
     {
@@ -36,27 +37,27 @@ class RowToModelConverter implements RowToModelConverterInterface
 
         if (!$this->patternStorage->getIntervalSeparators() ||
             !$this->patternStorage->getCollectionSeparators()) {
-            return RowTypeEnum::UNDEFINED;
+            return RowTypeEnum::from(RowTypeEnum::UNDEFINED);
         }
 
         $allDatePatterns = $this->patternStorage->getPatternCollection()->getPatternModels();
         foreach ($allDatePatterns as $datePattern) {
             if (preg_match_all('/^' . $datePattern->getPattern() . '$/ui', $row)) {
-                return RowTypeEnum::SIMPLE_DATE;
+                return RowTypeEnum::from(RowTypeEnum::SIMPLE_DATE);
             }
         }
 
         if ($this->getRowParts($row, $this->patternStorage->getCollectionSeparators())) {
-            return RowTypeEnum::DATE_COLLECTION;
+            return RowTypeEnum::from(RowTypeEnum::DATE_COLLECTION);
         }
 
         $initialWords = $this->patternStorage->getIntervalInitialWords();
         $separators = $this->patternStorage->getIntervalSeparators();
         if ($this->getIntervalParts($row, $initialWords, $separators)) {
-            return RowTypeEnum::DATE_INTERVAL;
+            return RowTypeEnum::from(RowTypeEnum::DATE_INTERVAL);
         }
 
-        return RowTypeEnum::UNDEFINED;
+        return RowTypeEnum::from(RowTypeEnum::UNDEFINED);
     }
 
     /**
