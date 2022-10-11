@@ -9,6 +9,10 @@ The library provides extended functionality for working with dates.
 
 The library solves all these problems.
 
+# Versions
+- There is code for php8.1 in the master branch
+- There is code for php8.0 in the master-php8.0 branch
+
 # Configuration
 Create `ArrayPatternStorage`.\
 The object takes config array of a strictly defined format:
