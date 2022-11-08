@@ -152,7 +152,7 @@ class ArrayPatternStorage implements PatternStorageInterface
     {
         foreach ($this->config['months'] as $monthNumber => $monthExpressions) {
             foreach ($monthExpressions as $expression){
-                if (preg_match('/' . $expression . '/ui', trim($monthName))) {
+                if (preg_match('/^' . $expression . '$/ui', trim($monthName))) {
                     return MonthNumberEnum::from($monthNumber);
                 }
             }
